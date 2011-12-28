@@ -810,8 +810,11 @@ module Aws
     #
     def clear_bucket(bucket)
       incrementally_list_bucket(bucket) do |results|
-        p results
-        results[:contents].each { |key| p key; delete(bucket, key[:key]) }
+        # p results
+        results[:contents].each do |key| 
+          # p key 
+          delete(bucket, key[:key])
+        end
       end
       true
     rescue
