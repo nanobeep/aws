@@ -808,11 +808,11 @@ module Aws
     #
     #  s3.clear_bucket('my_awesome_bucket') #=> true
     #
-    def clear_bucket(bucket)
+    def clear_bucket(bucket, verbose=false)
       incrementally_list_bucket(bucket) do |results|
-        # p results
+        p results if verbose
         results[:contents].each do |key| 
-          # p key 
+          p key if verbose 
           delete(bucket, key[:key])
         end
       end
